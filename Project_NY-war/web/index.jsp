@@ -21,6 +21,5 @@
             <input type="submit" name="submitknop" value="Opvragen">
             <input type="submit" name="submitknop" value="Scannen">
         </form>
-        **apels**
     </body>
 </html>
