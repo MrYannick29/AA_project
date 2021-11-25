@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1>Welkom bij CovidScan</h1>
-        <h3>Wat wilt u doen?</h3>
+        <h3>Wat wilt u doen? hallo</h3>
         <form method="post" action="<c:url value='/IndexServlet'/>">
             <input type="submit" name="submitknop" value="Aanpassen">
             <input type="submit" name="submitknop" value="Opvragen">
