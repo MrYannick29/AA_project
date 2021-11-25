@@ -8,12 +8,10 @@
  * Created: 14-okt-2021
  */
 
-
-drop table NY_groepen;
-drop table NY_gebruikers;
 drop table NY_vaccincertificaat;
 drop table NY_testcertificaat;
-drop table NY_burgers;
+drop table NY_groepen;
+drop table NY_gebruikers;
 
 
 create table NY_gebruikers (
@@ -26,22 +24,17 @@ create table NY_groepen (
         groep varchar(50) not null
 );
 
-create table NY_burgers (
-        bid  int not null primary key,
-        naam varchar(50)
-);
-
 
 create table NY_vaccincertificaat (
         vcid int not null primary key,
-        bid int references NY_burgers,
+        bid varchar(50) references NY_gebruikers,
         dtm date,
         soort varchar(50)
 );
 
 create table NY_testcertificaat (
         tcid int not null primary key,
-        bid int references NY_burgers,
+        bid varchar(50) references NY_gebruikers,
         dtm date,
         res int
 
@@ -51,7 +44,14 @@ create table NY_testcertificaat (
 insert into NY_gebruikers values('Yannick', 'Yannick');
 insert into NY_gebruikers values('Niels', 'Niels');
 insert into NY_groepen values('Yannick', 'beheer');
-insert into NY_groepen values('Niels', 'burger');
+insert into NY_groepen values('Niels', 'beheer');
+
+insert into NY_gebruikers values('100000', '100000');
+insert into NY_gebruikers values('100001', '100001');
+insert into NY_groepen values('100000', 'burger');
+insert into NY_groepen values('100001', 'burger');
+
+insert into NY_vaccincertificaat values(1, '100000', '2021-11-25', 'pfizer');
 
 
 

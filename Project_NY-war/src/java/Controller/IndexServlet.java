@@ -5,12 +5,17 @@
  */
 package Controller;
 
+import beans.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,6 +32,7 @@ public class IndexServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -78,7 +84,7 @@ public class IndexServlet extends HttpServlet {
             response.sendRedirect("Beheer/beheer.jsp");
         }
         else if(request.getParameter("submitknop").equals("Opvragen"))
-        {
+        {                   
             response.sendRedirect("Burger/burger.jsp");
         }
         else if(request.getParameter("submitknop").equals("Scannen"))
