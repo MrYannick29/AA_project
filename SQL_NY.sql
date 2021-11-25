@@ -28,6 +28,7 @@ create table NY_burgers (
         naam varchar(50)
 );
 
+/*
 create table NY_certificaat (
     //subtabellen
 );
@@ -36,7 +37,7 @@ create table NY_vaccincertificaat (
         cid int not null primary key,
 );
 
-create table NY_testcertificaat (
+create table NY_testcertificaat ( 
         cid int not null primary key,
 );
 
@@ -44,12 +45,12 @@ create table NY_burgercertificaat (
         bid int not null references NY_burgers,
         cid int not null references NY_certificaat
 );
-
+*/
 
 insert into NY_gebruikers values('Yannick', 'Yannick');
 insert into NY_gebruikers values('Niels', 'Niels');
 insert into NY_groepen values('Yannick', 'beheer');
-insert into NY_groepen values('Niels', 'beheer');
+insert into NY_groepen values('Niels', 'burger');
 
 
 

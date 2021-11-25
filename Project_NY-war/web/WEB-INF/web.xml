@@ -45,4 +45,44 @@
             30
         </session-timeout>
     </session-config>
+    <security-constraint>
+        <display-name>ConstraintBeheer</display-name>
+        <web-resource-collection>
+            <web-resource-name>beheer</web-resource-name>
+            <description/>
+            <url-pattern>/Beheer/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>beheer</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Constraint1Burger</display-name>
+        <web-resource-collection>
+            <web-resource-name>burger</web-resource-name>
+            <description/>
+            <url-pattern>/Burger/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>burger</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>DBRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/loginError.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>beheer</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>burger</role-name>
+    </security-role>
 </web-app>
