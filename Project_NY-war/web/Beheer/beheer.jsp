@@ -29,3 +29,11 @@
         </form>
     </body>
 </html>
+
+<!--
+
+Voeg nieuw certificaat toe: 2 keuzes: vaccin of test, voeg doe aan db
+Pas Certificaat aan:    Laat alle certificaten zien: vaccins en testen
+                        kan veranderd worden en terug naar de db gezet worden
+
+-->
