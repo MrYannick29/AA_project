@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,9 +16,9 @@
     <body>
         <h1>Hallo</h1>
         <h3>Geef de code die u wilt scannen</h3>
-        <form>
-            <label for="burgerid">BurgerID: </label>
-            <input type="text" name="burgerid">
+        <form method="post" action="<c:url value='/ScanServlet'/>">
+            <label for="certificaatidid">CertificaatID: </label>
+            <input type="text" name="certificaatid">
             <input type="submit" name="submitknop" value="scanid">
         </form>
     </body>

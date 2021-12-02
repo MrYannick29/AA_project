@@ -5,12 +5,19 @@
  */
 package Controller;
 
+import beans.certificatenLocal;
+import entitiy.NyTestcertificaat;
+import entitiy.NyVaccincertificaat;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,6 +34,8 @@ public class ScanServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @EJB private certificatenLocal certificaten;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -70,7 +79,44 @@ public class ScanServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        if(request.getParameter("submitknop").equals("scanid"))
+        {
+            String certid = request.getParameter("certificaatid");
+            Calendar cal;
+            String status = "NOTSAFE";
+            String burgerID = null;
+            try {
+                NyVaccincertificaat Vcert = certificaten.scanVaccinCertificaten(certid);
+                cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, -14);
+                if(Vcert.getDtm().before(cal.getTime()))
+                {
+                    status = "SAFE";
+                }
+                burgerID = Vcert.getBid().getGebruikersnaam();
+            } catch (Exception e) {
+            }
+            try {
+                NyTestcertificaat Tcert = certificaten.scanTestCertificaten(certid);
+                cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, -3);
+                if(Tcert.getDtm().after(cal.getTime()))
+                {
+                    status = "SAFE";
+                }
+                burgerID = Tcert.getBid().getGebruikersnaam();
+            } catch (Exception e) {
+            }
+            
+            System.out.print(status);
+            System.out.print(burgerID);
+            HttpSession sessie = request.getSession();
+            sessie.setAttribute("status", status);
+            sessie.setAttribute("burgerID", burgerID);
+            
+            response.sendRedirect("Open/scanres.jsp");
+
+        }
     }
 
     /**

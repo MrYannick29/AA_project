@@ -89,7 +89,7 @@ public class IndexServlet extends HttpServlet {
         }
         else if(request.getParameter("submitknop").equals("Scannen"))
         {
-            response.sendRedirect("scannen.jsp");
+            response.sendRedirect("Open/scannen.jsp");
         }
     }
 

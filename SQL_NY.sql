@@ -51,7 +51,7 @@ insert into NY_gebruikers values('100001', '100001');
 insert into NY_groepen values('100000', 'burger');
 insert into NY_groepen values('100001', 'burger');
 
-insert into NY_vaccincertificaat values(1, '100000', '2021-11-25', 'pfizer');
+insert into NY_vaccincertificaat values(1, '100000', '2021-11-02', 'pfizer');
 
 
 

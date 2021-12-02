@@ -5,6 +5,9 @@
  */
 package beans;
 
+import entitiy.NyGebruikers;
+import entitiy.NyTestcertificaat;
+import entitiy.NyVaccincertificaat;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -16,4 +19,9 @@ import javax.ejb.Local;
 public interface certificatenLocal {
     List getTestCertificaten(String BurgerID);
     List getVaccinCertificaten(String BurgerID);
+    
+    NyTestcertificaat scanTestCertificaten(String CertID);
+    NyVaccincertificaat scanVaccinCertificaten(String CertID);
+    
+    NyGebruikers zoekBurger(String BurgerID);
 }
