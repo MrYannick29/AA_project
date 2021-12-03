@@ -14,5 +14,10 @@
     <body>
         <h1>Error</h1>
         <p>Geen Toegang</p>
+        <form method="post" action="<c:url value='/IndexServlet'/>">
+        <input type="submit" name="submitknop" value="logout" >
+        </form>
     </body>
 </html>
+
+<!-- oplossing aan het zoeken voor een foute inlog, momenteel kan ik indexServlet niet aanpassen ( voor god weet welke reden, thanks GitHub) -->
