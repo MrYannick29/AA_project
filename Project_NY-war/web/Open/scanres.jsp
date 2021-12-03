@@ -19,4 +19,5 @@
             <h3>status: <c:out value="${sessionScope.status}"/></h3>
         </c:if>
     </body>
+    <%@ include file="../footer.jsp" %>
 </html>

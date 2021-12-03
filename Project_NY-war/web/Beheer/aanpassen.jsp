@@ -14,4 +14,5 @@
     <body>
         <h1>Certificaat aanpassen</h1>
     </body>
+    <%@ include file="../footer.jsp" %>
 </html>

@@ -22,4 +22,5 @@
             <input type="submit" name="submitknop" value="scanid">
         </form>
     </body>
+    <%@ include file="../footer.jsp" %>
 </html>

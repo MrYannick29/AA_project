@@ -91,6 +91,11 @@ public class IndexServlet extends HttpServlet {
         {
             response.sendRedirect("Open/scannen.jsp");
         }
+        else if(request.getParameter("submitknop").equals("logout"))
+        {
+            request.getSession().invalidate();
+            response.sendRedirect("index.jsp");
+        }
     }
 
     /**
