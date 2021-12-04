@@ -5,12 +5,16 @@
  */
 package Controller;
 
+import beans.certificatenLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,6 +31,8 @@ public class BeheerServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @EJB private certificatenLocal certificaten;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -71,17 +77,47 @@ public class BeheerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        if(request.getParameter("submitknop").equals("GA"))
-        {
-            switch(request.getParameter("actie")){
-                case "1":
-                    response.sendRedirect("Beheer/toevoegen.jsp");
-                    break;
-                case "2":
-                    response.sendRedirect("Beheer/aanpassen.jsp");
-                    break;
-            }
+        switch(request.getParameter("submitknop")){
+            case("GA"):
+                switch(request.getParameter("actie")){
+                    case "1":
+                        response.sendRedirect("Beheer/toevoegen.jsp");
+                        break;
+                    case "2":
+                        response.sendRedirect("Beheer/aanpassen.jsp");
+                        break;
+                }
+                break;
+            
+            case("Get Certificaat"):
+                HttpSession sessie = request.getSession();
+                String certID = request.getParameter("ID");
+                List certificaat;
+                switch(request.getParameter("actie")){
+                    case "1":
+                        certificaat = certificaten.getTestCertificateById(certID);
+                        sessie.setAttribute("Testcertificate", certificaat);
+                        response.sendRedirect("Beheer/aanpassen.jsp");
+                        break;
+                    case "2":
+                        certificaat = certificaten.getVaccinCertificateById(certID);
+                        sessie.setAttribute("Vaccincertificate", certificaat);
+                        response.sendRedirect("Beheer/aanpassen.jsp");
+                        break;
+                }
+                break;
+            
+            case("Update Test"):
+                //ToDO Add a way to update the database, also in the beans
+                response.sendRedirect("Beheer/beheer.jsp");
+                break;
+            
+            case("Update Vaccin"):
+                //ToDO Add a way to update the database, also in the beans
+                response.sendRedirect("Beheer/beheer.jsp");
+                break;
         }
+        
     }
 
     /**

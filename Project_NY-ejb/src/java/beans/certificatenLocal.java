@@ -24,4 +24,7 @@ public interface certificatenLocal {
     NyVaccincertificaat scanVaccinCertificaten(String CertID);
     
     NyGebruikers zoekBurger(String BurgerID);
+    
+    List getTestCertificateById(String testID);
+    List getVaccinCertificateById(String vacID);
 }

@@ -47,4 +47,11 @@ public class certificaten implements certificatenLocal {
     {
         return (NyGebruikers) em.createQuery("Select l from NyGebruikers l where l.bid=?1").setParameter(1, BurgerID).getSingleResult();
     }
+    
+    public List getTestCertificateById(String testID){
+        return em.createNamedQuery("NyTestcertificaat.findByTcid").setParameter("tcid", testID).getResultList();
+    }
+    public List getVaccinCertificateById(String vacID){
+        return em.createNamedQuery("NyVaccincertificaat.findByVcid").setParameter("vcid", vacID).getResultList();
+    }
 }
