@@ -19,4 +19,6 @@
             <input type="submit" name="knop">
         </form>
     </body>
+    <%@ include file="footer.jsp" %>
 </html>
+

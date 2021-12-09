@@ -10,6 +10,8 @@
 <footer>
     <form method="post" action="<c:url value='/IndexServlet'/>">
         <input type="submit" name="submitknop" value="logout" >
+        <input type="submit" name="submitknop" value="Home" >
+        </form>
     </form>
 </footer>
 

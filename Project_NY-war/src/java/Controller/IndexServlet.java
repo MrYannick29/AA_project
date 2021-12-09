@@ -96,6 +96,10 @@ public class IndexServlet extends HttpServlet {
             request.getSession().invalidate();
             response.sendRedirect("index.jsp");
         }
+        else if(request.getParameter("submitknop").equals("Home"))
+        {
+            response.sendRedirect("index.jsp");
+        }
     }
 
     /**
