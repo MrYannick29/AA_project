@@ -26,31 +26,43 @@ public class swing implements swingRemote {
     @EJB private certificatenLocal certificaten;
     
     public String scanVaccinCertificaten(String certID) {
+        System.out.println(certID);
         String status = "?";
         String burgerID = "UNKNOW";
         try {
                 NyVaccincertificaat Vcert = certificaten.scanVaccinCertificaten(certID);
+                System.out.println(Vcert);
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, -14);
                 if(Vcert.getDtm().before(cal.getTime()))
                 {
                     status = "SAFE";
                 }
+                else
+                {
+                    status = "NOTSAFE";
+                }
             burgerID = Vcert.getBid().getGebruikersnaam();
             } catch (Exception e) {
+                System.out.println("Error catch");
             }
         return burgerID + "/" + status;
     }
     public String scanTestCertificaten(String certID) {
+        System.out.println(certID);
         String status = "?";
         String burgerID = "UNKNOW";
         try {
                 NyTestcertificaat Tcert = certificaten.scanTestCertificaten(certID);
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, -3);
-                if(Tcert.getDtm().after(cal.getTime()))
+                if(Tcert.getDtm().after(cal.getTime()) && Tcert.getRes()==0)
                 {
                     status = "SAFE";
+                }
+                else
+                {
+                    status = "NOTSAFE";
                 }
             burgerID = Tcert.getBid().getGebruikersnaam();
             } catch (Exception e) {

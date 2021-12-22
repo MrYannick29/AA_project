@@ -11,11 +11,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../opmaak.css">
         <title>Scannen</title>
     </head>
     <body>
         <h1>Hallo</h1>
         <h3>Geef de code die u wilt scannen</h3>
+        <div class="line"></div>
         <form method="post" action="<c:url value='/ScanServlet'/>">
             <label for="certificaatidid">CertificaatID: </label>
             <input type="text" name="certificaatid">

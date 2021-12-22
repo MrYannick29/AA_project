@@ -1,0 +1,80 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-dec-2021, 15:39:15
+    Author     : Yannick
+*/
+
+html {
+    background-color: #d6d6ee;
+}
+
+body{
+    max-width: 1024px;
+    width: 100%;
+    margin: 0px auto;
+    background-color: #FAFAFA;
+    padding: 0px 40px 30px 40px;
+    box-sizing: border-box;
+    display: block;
+}
+
+h1{
+    color: white;
+    padding: 5px 10px 5px 10px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 25px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #393fff; /*600*/
+}
+
+h3, h4{
+    color: #22257a;
+    margin-bottom: 0px;
+   
+}
+
+table {
+        border-collapse: collapse;
+        border: 3px solid black;
+        max-width: 800px;
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+    }
+    th {
+        background: lightgrey;
+        width: 30%;
+    }
+    tr{
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+    td{
+        text-align: center;
+    }
+    
+    .line{
+        width: 100%;
+        height: 2px;
+        background-color: #22257a;
+        margin-bottom: 20px;
+    }
+    
+    footer{
+        margin: 30px 30px 30px 0px;
+    }
+    
+    input[type=submit]{
+        background: #c2c0ff;
+        border: 3px solid #22257a;
+        border-radius: 3px;
+        color: #22257a;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+    }

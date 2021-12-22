@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../opmaak.css">
         <title>Burger</title>
     </head>
     <body>
@@ -19,8 +20,14 @@
             <input type="submit" name="submitknop" value="Toon mijn certificaten">
         </form>
         <h4>Testcertificaten</h4>
+        <div class="line"></div>
         
         <table>
+            <tr>
+                <th>Tcid</th>
+                <th>Date</th>
+                <th>Resultaat</th>
+            </tr>
             <c:forEach var="tests" items="${sessionScope.tests}">
                 <tr>
                     <td><c:out value="${tests.getTcid()}"/></td>
@@ -31,7 +38,13 @@
         </table>
         
         <h4>Vaccincertificaten</h4>
+        <div class="line"></div>
         <table>
+            <tr>
+                <th>Vcid</th>
+                <th>Date</th>
+                <th>Soort</th>
+            </tr>
             <c:forEach var="vaccins" items="${sessionScope.vaccins}">
                 <tr>
                     <td><c:out value="${vaccins.getVcid()}"/></td>

@@ -83,8 +83,8 @@ public class ScanServlet extends HttpServlet {
         {
             String certid = request.getParameter("certificaatid");
             Calendar cal;
-            String status = "NOTSAFE";
-            String burgerID = null;
+            String status = "?";
+            String burgerID = "UNKNOW";
             try {
                 NyVaccincertificaat Vcert = certificaten.scanVaccinCertificaten(certid);
                 cal = Calendar.getInstance();
@@ -93,6 +93,10 @@ public class ScanServlet extends HttpServlet {
                 {
                     status = "SAFE";
                 }
+                else
+                {
+                    status = "NOTSAFE";
+                }
                 burgerID = Vcert.getBid().getGebruikersnaam();
             } catch (Exception e) {
             }
@@ -100,16 +104,18 @@ public class ScanServlet extends HttpServlet {
                 NyTestcertificaat Tcert = certificaten.scanTestCertificaten(certid);
                 cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, -3);
-                if(Tcert.getDtm().after(cal.getTime()))
+                if(Tcert.getDtm().after(cal.getTime()) && Tcert.getRes()==0)
                 {
                     status = "SAFE";
+                }
+                else
+                {
+                    status = "NOTSAFE";
                 }
                 burgerID = Tcert.getBid().getGebruikersnaam();
             } catch (Exception e) {
             }
             
-            System.out.print(status);
-            System.out.print(burgerID);
             HttpSession sessie = request.getSession();
             sessie.setAttribute("status", status);
             sessie.setAttribute("burgerID", burgerID);
