@@ -45,7 +45,7 @@
             <input type="submit" name="submitknop" value="Update Test"/> 
         </form>
         </p>
-        <h4>Test certificate</h4>
+        <h4>Vaccin certificate</h4>
         <p>
         <form method="post" action="<c:url value='/BeheerServlet'/>">
             <table>
