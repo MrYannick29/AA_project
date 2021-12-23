@@ -1,7 +1,7 @@
 <%-- 
     Document   : burger
     Created on : 18-nov-2021, 11:38:18
-    Author     : r0744479
+    Author     : Yannick Saelen
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : aanpassen
     Created on : 18-nov-2021, 11:15:15
-    Author     : r0744479
+    Author     : Yannick Saelen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

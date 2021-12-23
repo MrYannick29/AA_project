@@ -1,7 +1,7 @@
 <%-- 
     Document   : beheer
     Created on : 18-nov-2021, 11:14:47
-    Author     : r0744479
+    Author     : Yannick Saelen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,11 +11,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../opmaak.css">
         <title>Beheer</title>
     </head>
     <body>
         <h1>Dag Beheerder</h1>
         <h3>Wat wilt u doen?</h3>
+        <div class="line"></div>
         
         <form method="post" action="<c:url value='/BeheerServlet'/>">
             <label for="burgerid">BurgerID: </label>

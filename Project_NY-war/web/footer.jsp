@@ -1,7 +1,7 @@
 <%-- 
     Document   : footer
     Created on : 3-dec-2021, 14:58:21
-    Author     : Yannick
+    Author     : Yannick Saelen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

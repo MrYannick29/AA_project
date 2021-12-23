@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author r0744479
+ * @author Yannick Saelen
  */
 public class BurgerServlet extends HttpServlet {
 
