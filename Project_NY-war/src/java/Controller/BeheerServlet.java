@@ -6,6 +6,8 @@
 package Controller;
 
 import beans.certificatenLocal;
+import entitiy.NyTestcertificaat;
+import entitiy.NyVaccincertificaat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -99,13 +101,14 @@ public class BeheerServlet extends HttpServlet {
                 List certificaat;
                 switch(request.getParameter("actie")){
                     case "1":
-                        certificaat = certificaten.getTestCertificateById(certID);
-                        sessie.setAttribute("Testcertificate", certificaat);
+                        NyTestcertificaat Tcert = certificaten.scanTestCertificaten(certID);
+                        sessie.setAttribute("Testcertificate", Tcert);
+                        
                         response.sendRedirect("Beheer/aanpassen.jsp");
                         break;
                     case "2":
-                        certificaat = certificaten.getVaccinCertificateById(certID);
-                        sessie.setAttribute("Vaccincertificate", certificaat);
+                        NyVaccincertificaat Vcert = certificaten.scanVaccinCertificaten(certID);
+                        sessie.setAttribute("Vaccincertificate", Vcert);
                         response.sendRedirect("Beheer/aanpassen.jsp");
                         break;
                 }
