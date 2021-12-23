@@ -34,7 +34,7 @@ public class swing implements swingRemote {
                 System.out.println(Vcert);
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, -14);
-                if(Vcert.getDtm().before(cal.getTime()))
+                if(Vcert.getDtm().before(cal.getTime()) && Vcert.getNr()>1)
                 {
                     status = "SAFE";
                 }

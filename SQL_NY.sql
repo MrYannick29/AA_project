@@ -29,7 +29,9 @@ create table NY_vaccincertificaat (
         vcid int not null primary key,
         bid varchar(50) references NY_gebruikers,
         dtm date,
-        soort varchar(50)
+        soort varchar(50),
+        nr int,
+        CHECK (soort in ('Pfizer','Moderna','AstraZeneca', 'Janssens'))
 );
 
 create table NY_testcertificaat (
@@ -51,8 +53,10 @@ insert into NY_gebruikers values('100001', '100001');
 insert into NY_groepen values('100000', 'burger');
 insert into NY_groepen values('100001', 'burger');
 
-insert into NY_vaccincertificaat values(001, '100000', '2021-11-02', 'pfizer');
-insert into NY_vaccincertificaat values(002, '100001', '2021-12-21', 'pfizer');
+insert into NY_vaccincertificaat values(001, '100000', '2021-11-02', 'Pfizer', 1);
+insert into NY_vaccincertificaat values(006, '100001', '2021-12-21', 'Pfizer', 2);
+insert into NY_vaccincertificaat values(007, '100001', '2021-09-03', 'Pfizer', 1);
+insert into NY_vaccincertificaat values(008, '100001', '2021-10-11', 'Pfizer', 2);
 insert into NY_testcertificaat values(003, '100000', '2021-12-21', 0);
 insert into NY_testcertificaat values(004, '100001', '2021-12-03', 0);
 insert into NY_testcertificaat values(005, '100001', '2021-12-21', 1);

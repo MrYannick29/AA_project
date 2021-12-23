@@ -89,7 +89,7 @@ public class ScanServlet extends HttpServlet {
                 NyVaccincertificaat Vcert = certificaten.scanVaccinCertificaten(certid);
                 cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, -14);
-                if(Vcert.getDtm().before(cal.getTime()))
+                if(Vcert.getDtm().before(cal.getTime()) && Vcert.getNr() > 1)
                 {
                     status = "SAFE";
                 }
@@ -122,6 +122,10 @@ public class ScanServlet extends HttpServlet {
             
             response.sendRedirect("Open/scanres.jsp");
 
+        }
+        if(request.getParameter("submitknop").equals("scanopnieuw"))
+        {
+            response.sendRedirect("Open/scannen.jsp");
         }
     }
 

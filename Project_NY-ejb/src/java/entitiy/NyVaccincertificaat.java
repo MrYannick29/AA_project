@@ -36,6 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "NyVaccincertificaat.findBySoort", query = "SELECT n FROM NyVaccincertificaat n WHERE n.soort = :soort")})
 public class NyVaccincertificaat implements Serializable {
 
+    @Column(name = "NR")
+    private Integer nr;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -114,6 +117,14 @@ public class NyVaccincertificaat implements Serializable {
     @Override
     public String toString() {
         return "entitiy.NyVaccincertificaat[ vcid=" + vcid + " ]";
+    }
+
+    public Integer getNr() {
+        return nr;
+    }
+
+    public void setNr(Integer nr) {
+        this.nr = nr;
     }
     
 }

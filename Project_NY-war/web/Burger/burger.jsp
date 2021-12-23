@@ -44,12 +44,14 @@
                 <th>Vcid</th>
                 <th>Date</th>
                 <th>Soort</th>
+                <th>Dosis</th>
             </tr>
             <c:forEach var="vaccins" items="${sessionScope.vaccins}">
                 <tr>
                     <td><c:out value="${vaccins.getVcid()}"/></td>
                     <td><c:out value="${vaccins.getDtm()}"/></td>
                     <td><c:out value="${vaccins.getSoort()}"/></td>
+                    <td><c:out value="${vaccins.getNr()}"/></td>
                 </tr>
             </c:forEach>
         </table>

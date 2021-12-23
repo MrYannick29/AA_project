@@ -19,6 +19,9 @@
             <h3>BurgerID: <c:out value="${sessionScope.burgerID}"/></h3>
             <h3>status: <c:out value="${sessionScope.status}"/></h3>
         </c:if>
+        <form method="post" action="<c:url value='/ScanServlet'/>">
+            <input type="submit" name="submitknop" value="scanopnieuw">
+        </form>
     </body>
     <%@ include file="../footer.jsp" %>
 </html>
