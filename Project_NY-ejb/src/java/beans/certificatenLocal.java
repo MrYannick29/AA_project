@@ -8,12 +8,13 @@ package beans;
 import entitiy.NyGebruikers;
 import entitiy.NyTestcertificaat;
 import entitiy.NyVaccincertificaat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Yannick
+ * @author Yannick Saelen
  */
 @Local
 public interface certificatenLocal {
@@ -27,4 +28,9 @@ public interface certificatenLocal {
     
     List getTestCertificateById(String testID);
     List getVaccinCertificateById(String vacID);
+    
+    void setVaccinCertificaat(String datum, String soort, String dosis, String bid);
+    void setTestCertificaat(String datum, String res, String bid);
+    void UpdateVaccinCertificaat(String datum, String soort, String dosis, String bid, String Vid);
+    void UpdateTestCertificaat(String datum, String res, String bid, String tid);
 }

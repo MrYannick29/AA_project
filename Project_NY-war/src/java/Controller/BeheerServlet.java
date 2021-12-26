@@ -10,7 +10,12 @@ import entitiy.NyTestcertificaat;
 import entitiy.NyVaccincertificaat;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +25,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author r0744479
+ * @author Yannick Saelen
  */
 public class BeheerServlet extends HttpServlet {
 
@@ -78,9 +83,11 @@ public class BeheerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        HttpSession sessie;
         switch(request.getParameter("submitknop")){
             case("GA"):
+                sessie = request.getSession();
+                sessie.setAttribute("burger", request.getParameter("burgerid"));
                 switch(request.getParameter("actie")){
                     case "1":
                         response.sendRedirect("Beheer/toevoegen.jsp");
@@ -92,33 +99,93 @@ public class BeheerServlet extends HttpServlet {
                 break;
             
             case("Get Certificaat"):
-                HttpSession sessie = request.getSession();
+                sessie = request.getSession();
                 String certID = request.getParameter("ID");
-                List certificaat;
-                switch(request.getParameter("actie")){
-                    case "1":
+                
+                sessie.setAttribute("VacSoort", "Pfizer");
+                
+                switch(request.getParameter("CerType")){
+                    case "test":
+                        try{
                         NyTestcertificaat Tcert = certificaten.scanTestCertificaten(certID);
-                        sessie.setAttribute("Testcertificate", Tcert);
+                        sessie.setAttribute("TestID", Tcert.getTcid());
+                        sessie.setAttribute("DBDATE", Tcert.getDtm());
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+                        String strDate = dateFormat.format(Tcert.getDtm()); 
+                        sessie.setAttribute("TestDate", strDate);
+                        sessie.setAttribute("TestResult", Tcert.getRes());
+                        }
+                        catch(Exception E){
+                            
+                        }
                         
                         response.sendRedirect("Beheer/aanpassen.jsp");
                         break;
-                    case "2":
+                    case "vaccin":
+                        try{
                         NyVaccincertificaat Vcert = certificaten.scanVaccinCertificaten(certID);
+                        sessie.setAttribute("VacID", Vcert.getVcid());
+                        sessie.setAttribute("DBDATE", Vcert.getDtm());
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+                        String strDate = dateFormat.format(Vcert.getDtm()); 
+                        sessie.setAttribute("VacDate", strDate);
+                        sessie.setAttribute("VacSoort", Vcert.getSoort());
+                        sessie.setAttribute("VacNr",Vcert.getNr());
                         sessie.setAttribute("Vaccincertificate", Vcert);
+                        ArrayList soorten = new ArrayList();
+                        soorten.add("Pfizer");soorten.add("Moderna");soorten.add("AstraZeneca");soorten.add("Janssens");
+                        sessie.setAttribute("VaccinSoorten", soorten);
+                        sessie.setAttribute("VacSelected","selected");
+                        }
+                        catch(Exception e){
+                            
+                        }
                         response.sendRedirect("Beheer/aanpassen.jsp");
                         break;
                 }
                 break;
             
             case("Update Test"):
-                //ToDO Add a way to update the database, also in the beans
+                sessie = request.getSession();
+                String Tid = request.getParameter("id");
+                String datumNT = request.getParameter("datum");
+                String resN = request.getParameter("res");
+                String bidNT = (String) sessie.getAttribute("burger");
+                certificaten.UpdateTestCertificaat(datumNT, resN, bidNT, Tid);
                 response.sendRedirect("Beheer/beheer.jsp");
                 break;
             
             case("Update Vaccin"):
-                //ToDO Add a way to update the database, also in the beans
+                sessie = request.getSession();
+                String Vid = request.getParameter("id");
+                String datumNV = request.getParameter("datum");
+                String Nsoort = request.getParameter("soort");
+                String Ndosis = request.getParameter("dosis");
+                String NbidV = (String) sessie.getAttribute("burger");
+                certificaten.UpdateVaccinCertificaat(datumNV, Nsoort, Ndosis, NbidV, Vid);
                 response.sendRedirect("Beheer/beheer.jsp");
                 break;
+                
+            case("Vaccin Toevoegen"):
+                sessie = request.getSession();
+                String datumV = request.getParameter("datum");
+                String soort = request.getParameter("soort");
+                String dosis = request.getParameter("dosis");
+                String bidV = (String) sessie.getAttribute("burger");
+                certificaten.setVaccinCertificaat(datumV, soort, dosis, bidV);
+                
+                response.sendRedirect("Beheer/beheer.jsp");
+                break;
+            case("Test Toevoegen"):
+                sessie = request.getSession();
+                String datumT = request.getParameter("datum");
+                String res = request.getParameter("res");
+                String bidT = (String) sessie.getAttribute("burger");
+                certificaten.setTestCertificaat(datumT, res, bidT);
+                
+                response.sendRedirect("Beheer/beheer.jsp");
+                break;
+            
         }
         
     }

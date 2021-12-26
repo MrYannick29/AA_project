@@ -1,7 +1,7 @@
 <%-- 
     Document   : aanpassen
     Created on : 18-nov-2021, 11:15:15
-    Author     : r0744479
+    Author     : Yannick Saelen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,10 +16,10 @@
         <h1>Certificaat aanpassen</h1>
         <p>
         <form method="post" action="<c:url value='/BeheerServlet'/>">
-            <input type="text" name="ID" value="ID"/>
+            <input type="text" name="ID"  />
             <select name="CerType" id="CerType">
-                <option value="vaccin">Vaccin</option>
                 <option value="test">Test</option>
+                <option value="vaccin">Vaccin</option>
             </select>
             <input type="submit" name="submitknop" value="Get Certificaat"/>
         </form>
@@ -33,14 +33,14 @@
                         <th>Datum:</th>
                         <th>Result:</th>
                     </tr>
-                <c:forEach var="tests" items="${sessionScope.Testcertificate}">
+                
                     <tr>
-                        <td><input type="text" name="id" <c:out value="${tests.getTcid()}"/>></td>
-                        <td><input type="text" name="date" <c:out value="${tests.getDtm()}"/>></td>
-                        <td><input type="text" name="result" <c:out value="${tests.getRes()}"/>></td>
+                        <td><input type="text" name="id" value="<c:out value="${sessionScope.TestID}"/>"></td>
+                        <td><input type="date" name="datum" value="<c:out value="${sessionScope.TestDate}"/>"></td>
+                        <td><input type="text" name="result" value="<c:out value="${sessionScope.TestResult}"/>"></td>
                     </tr>
                     
-                </c:forEach>
+               
             </table>
             <input type="submit" name="submitknop" value="Update Test"/> 
         </form>
@@ -53,15 +53,28 @@
                         <th>ID:</th>
                         <th>Datum:</th>
                         <th>Soort:</th>
+                        <th>Dosis:</th>
+                        
                     </tr>
-                <c:forEach var="tests" items="${sessionScope.Vaccincertificate}">
+                
                     <tr>
-                        <td><input type="text" name="id" <c:out value="${tests.getVcid()}"/>></td>
-                        <td><input type="text" name="date" <c:out value="${tests.getDtm()}"/>></td>
-                        <td><input type="text" name="result" <c:out value="${tests.getSoort()}"/>></td>
-                    </tr>
-                    
-                </c:forEach>
+                        <td><input type="text" name="id" value="<c:out value="${sessionScope.VacID}"/>"></td>
+                        <td><input type="date" name="datum" value="<c:out value="${sessionScope.VacDate}"/>"></td>
+                        <td><select name="soort">
+                                
+                                <c:forEach var="Soorten" items="${sessionScope.VaccinSoorten}">
+                                    
+                                        <option value="${Soorten}" ${Soorten == sessionScope.VacSoort ? 'selected' : ''}>
+                                            ${Soorten}
+                                        </option>
+                                    
+                                </c:forEach>
+                            
+                        </select></td>
+                                
+                        <td><input type="text" name="dosis" value="<c:out value="${sessionScope.VacNr}"/>"></td>
+                    </tr>                  
+                
             </table>
             <input type="submit" name="submitknop" value="Update Vaccin"/> 
         </form>

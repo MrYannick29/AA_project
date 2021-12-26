@@ -1,7 +1,7 @@
 <%-- 
     Document   : scanres
     Created on : 2-dec-2021, 20:32:18
-    Author     : Yannick
+    Author     : Yannick Saelen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

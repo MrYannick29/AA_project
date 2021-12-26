@@ -1,7 +1,7 @@
 <%-- 
     Document   : loginError
     Created on : 4-nov-2021, 11:10:48
-    Author     : r0744479
+    Author     : Yannick Saelen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

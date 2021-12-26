@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Yannick
+ * @author Yannick Saelen
  */
 
 @Stateless
