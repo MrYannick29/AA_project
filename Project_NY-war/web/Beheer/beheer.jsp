@@ -20,8 +20,7 @@
         <div class="line"></div>
         
         <form method="post" action="<c:url value='/BeheerServlet'/>">
-            <label for="burgerid">BurgerID: </label>
-            <input type="text" name="burgerid">
+            
             <select name="actie" id="actie">
                 <option value="1">Voeg nieuw certificaat toe</option>
                 <option value="2">Pas certificaat aan</option>

@@ -7,7 +7,20 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
+
 <html>
+    <script>
+        function validateForm()
+        {
+            if(document.Vacadd.soort.value!="<c:out value="${sessionScope.VacSoort }" />")
+            {
+                if(confirm("Verschil in vaccin ")!=true){
+                   return false ;
+               }
+            }
+    
+        }
+    </script>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="../opmaak.css">
@@ -15,10 +28,37 @@
     </head>
     <body>
         <h1>Certificaat toevoegen</h1>
+        <form method="post" action="<c:url value='/BeheerServlet'/>">
+        
+            <label for="burgerid">BurgerID: </label>
+            <input type="text" name="burgerid">            
+            <input type="submit" name="submitknop" value="Toon Certificaten">
+
+        </form>
         <h3>VaccinCertificaat</h3>
         <div class="line"></div>
+        <h4>Vorige Vaccinaties</h4>
+        <table>
+            <tr>
+                <th>Vcid</th>
+                <th>Date</th>
+                <th>Soort</th>
+                <th>Dosis</th>
+            </tr>
+            <c:forEach var="vaccins" items="${sessionScope.vaccins}">
+                <tr>
+                    <td><c:out value="${vaccins.getVcid()}"/></td>
+                    <td><c:out value="${vaccins.getDtm()}"/></td>
+                    <td><c:out value="${vaccins.getSoort()}"/></td>
+                    <td><c:out value="${vaccins.getNr()}"/></td>
+                </tr>
+            </c:forEach>
+        </table>        
         
-        <form method="post" action="<c:url value='/BeheerServlet'/>">
+        <div class="line"></div>
+        
+        <form name="Vacadd"  method="post" action="<c:url value='/BeheerServlet'/> " onSubmit="return validateForm()">
+            
             <table>
                 <tr>
                     <td><label for="datum">Datum: </label></td>
@@ -27,15 +67,20 @@
                 <tr>
                     <td><label for="soort">Soort:  </label></td>
                     <td><select name="soort">
-                            <option value="Pfizer">Pfizer</option>
-                            <option value="Moderna">Moderna</option>
-                            <option value="AstraZeneca">AstraZeneca</option>
-                            <option value="Janssens">Janssens</option>
+                                
+                                <c:forEach var="Soorten" items="${sessionScope.VaccinSoorten}">
+                                    
+                                        <option value="${Soorten}" ${Soorten == sessionScope.VacSoort ? 'selected' : ''}>
+                                            ${Soorten}
+                                        </option>
+                                    
+                                </c:forEach>
+                            
                         </select></td>
                 </tr>
                 <tr>
                     <td><label for="dosis">Dosis: </label></td>
-                    <td><input type="number" name="dosis"><br></td>
+                    <td><input type="number" name="dosis" value="<c:out value="${sessionScope.VacNrNxt}"/>"><br></td>
                 </tr>
             </table>
             <input type="submit" name="submitknop" value="Vaccin Toevoegen">
@@ -45,6 +90,7 @@
         <div class="line"></div>
         
         <form method="post" action="<c:url value='/BeheerServlet'/>">
+            
             <table>
                 <tr>
                     <td><label for="datum">Datum: </label></td>
