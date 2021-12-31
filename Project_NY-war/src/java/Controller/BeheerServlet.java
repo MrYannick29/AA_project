@@ -94,6 +94,8 @@ public class BeheerServlet extends HttpServlet {
                     case "1":
                          try{
                             sessie.removeAttribute("vaccins");
+                            sessie.removeAttribute("VacSoort");
+                            sessie.removeAttribute("VacNrNxt");
                         }
                         catch(Exception E){
                             
@@ -101,12 +103,36 @@ public class BeheerServlet extends HttpServlet {
                         response.sendRedirect("Beheer/toevoegen.jsp");
                         break;
                     case "2":
+                        try{
+                            sessie.removeAttribute("TestBID");
+                            sessie.removeAttribute("TestID");
+                            sessie.removeAttribute("DBDATE");
+                            sessie.removeAttribute("TestDate");
+                            sessie.removeAttribute("TestResult");
+                        }
+                        catch(Exception E){
+                            
+                        }
+                        
+                        try{
+                            sessie.removeAttribute("VacBID");
+                            sessie.removeAttribute("VacID");
+                            sessie.removeAttribute("DBDATE");
+                            sessie.removeAttribute("VacDate");
+                            sessie.removeAttribute("VacSoort");
+                            sessie.removeAttribute("VacNr");
+                            sessie.removeAttribute("Vaccincertificate");
+                            sessie.removeAttribute("VacSelected");
+                        }
+                        catch(Exception E){
+                            
+                        }
                         response.sendRedirect("Beheer/aanpassen.jsp");
                         break;
                 }
                 break;
             
-            case("Get Certificaat"):
+            case("Aanpassen"):
                 sessie = request.getSession();
                 String certID = request.getParameter("ID");
                 
@@ -141,7 +167,7 @@ public class BeheerServlet extends HttpServlet {
                             
                         }
                         
-                        response.sendRedirect("Beheer/aanpassen.jsp");
+                        response.sendRedirect("Beheer/chngTst.jsp");
                         break;
                     case "vaccin":
                         try{
@@ -172,7 +198,7 @@ public class BeheerServlet extends HttpServlet {
                         catch(Exception E){
                             
                         }
-                        response.sendRedirect("Beheer/aanpassen.jsp");
+                        response.sendRedirect("Beheer/chngVac.jsp");
                         break;
                 }
                 break;
@@ -225,16 +251,51 @@ public class BeheerServlet extends HttpServlet {
                 String BurgerID = (String) sessie.getAttribute("burger");
             
                 List vaccins = certificaten.getVaccinCertificaten(BurgerID);
+                List tests = certificaten.getTestCertificaten(BurgerID);
                 NyVaccincertificaat lastCert = (NyVaccincertificaat) vaccins.get(vaccins.size()-1);
                 String Soort = lastCert.getSoort();
                 String nextVacnr = Integer.toString(lastCert.getNr() + 1);
                 sessie.setAttribute("VacSoort", Soort);
                 sessie.setAttribute("vaccins", vaccins);
+                sessie.setAttribute("tests", tests);
                 sessie.setAttribute("VacNrNxt", nextVacnr);
                 
                 sessie.setAttribute("VaccinSoorten", soorten);
                 
+                
                 response.sendRedirect("Beheer/toevoegen.jsp");
+                break;
+            case("Toon Certificaten om aan te passen"):
+                sessie = request.getSession();                
+                sessie.setAttribute("burger", request.getParameter("burgerid"));
+                String BurgerIDchang = (String) sessie.getAttribute("burger");
+            
+                List vaccinschange = certificaten.getVaccinCertificaten(BurgerIDchang);
+                List testschange = certificaten.getTestCertificaten(BurgerIDchang);
+                
+                sessie.setAttribute("vaccins", vaccinschange);
+                sessie.setAttribute("tests", testschange);
+                
+                sessie.setAttribute("VaccinSoorten", soorten);
+                
+                
+                response.sendRedirect("Beheer/aanpassen.jsp");
+                break;
+                
+            case("Delete"):
+                switch(request.getParameter("CerType")){
+                    case "test":
+                        
+                        String DelTid = (String) request.getAttribute("TID");
+                        certificaten.DeleteTestCertificate(DelTid);
+                        response.sendRedirect("Beheer/beheer.jsp");
+                        break;
+                    case "vaccin":
+                        String DelVid = (String) request.getAttribute("VID");
+                        certificaten.DeleteVacCertificate(DelVid);
+                        response.sendRedirect("Beheer/beheer.jsp");
+                        break;
+                }
                 break;
         }
         

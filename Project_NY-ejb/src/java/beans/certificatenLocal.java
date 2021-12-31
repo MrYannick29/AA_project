@@ -33,4 +33,6 @@ public interface certificatenLocal {
     void setTestCertificaat(String datum, String res, String bid);
     void UpdateVaccinCertificaat(String datum, String soort, String dosis, String bid, String Vid);
     void UpdateTestCertificaat(String datum, String res, String bid, String tid);
+    void DeleteVacCertificate(String id);
+    void DeleteTestCertificate(String id);
 }

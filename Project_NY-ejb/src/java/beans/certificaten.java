@@ -159,4 +159,17 @@ public class certificaten implements certificatenLocal {
         
         em.persist(newTest);
     }
+    
+    public void DeleteTestCertificate(String id){
+        
+        NyTestcertificaat delTest = scanTestCertificaten(id);
+        em.remove(delTest);
+        
+    }
+    public void DeleteVacCertificate(String id){
+        
+        NyVaccincertificaat delVac = scanVaccinCertificaten(id);
+        em.remove(delVac);
+        
+    }
 }
