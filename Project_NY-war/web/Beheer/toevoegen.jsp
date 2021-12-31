@@ -1,7 +1,7 @@
 <%-- 
     Document   : toevoegen
     Created on : 18-nov-2021, 11:15:03
-    Author     : Yannick Saelen
+    Author     : Yannick Saelen & Niels Serlet
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,7 @@
 
 <html>
     <script>
-        function validateForm()
+        function validateVacForm()
         {
             if(document.Vacadd.soort.value!="<c:out value="${sessionScope.VacSoort }" />")
             {
@@ -18,7 +18,27 @@
                    return false ;
                }
             }
+            if(document.Vacadd.soort.value=="Janssens" && document.Vacadd.dosis.value!="1" )
+            {
+                if(confirm("2de Janssens vaccinatie?")!=true){
+                   return false ;
+               }
+            }
+            if(document.Vacadd.datum.value=="")
+            {
+                alert("Gelieve een datum in te vullen!");
+                document.Vacadd.datum.focus();
+                return false;
+            }
     
+        }
+        function validateTestFrom(){
+            if(document.Testadd.datum.value=="")
+            {
+                alert("Gelieve een datum in te vullen!");
+                document.Vacadd.datum.focus();
+                return false;
+            }
         }
     </script>
     <head>
@@ -57,7 +77,7 @@
         
         <div class="line"></div>
         
-        <form name="Vacadd"  method="post" action="<c:url value='/BeheerServlet'/> " onSubmit="return validateForm()">
+        <form name="Vacadd"  method="post" action="<c:url value='/BeheerServlet'/> " onSubmit="return validateVacForm()">
             
             <table>
                 <tr>
@@ -89,7 +109,7 @@
         <h3>TestCertificaat</h3>
         <div class="line"></div>
         
-        <form method="post" action="<c:url value='/BeheerServlet'/>">
+        <form name="Testadd" method="post" action="<c:url value='/BeheerServlet'/>" onSubmit="return validateTestFrom()">
             
             <table>
                 <tr>
