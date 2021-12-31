@@ -61,8 +61,8 @@
                      <td>
                         <form method="post" action="<c:url value='/BeheerServlet'/>"onSubmit="return confrmDelete()">
                             <input type="hidden"name="CerType" value="test">
-                            <input type="hidden" name="TID" value="<c:out value="${tests.getTcid()}"/>" />
-                            <input type="submit" name="submitknop" value="Delete"/>
+                            <input type="hidden" name="TID" value="<c:out value="${tests.getTcid()}"/>" >
+                            <input type="submit" name="submitknop" value="Delete">
                         </form>
                     </td>
                 </tr>

@@ -285,13 +285,12 @@ public class BeheerServlet extends HttpServlet {
             case("Delete"):
                 switch(request.getParameter("CerType")){
                     case "test":
-                        
-                        String DelTid = (String) request.getAttribute("TID");
+                        String DelTid = (String) request.getParameter("TID");
                         certificaten.DeleteTestCertificate(DelTid);
                         response.sendRedirect("Beheer/beheer.jsp");
                         break;
                     case "vaccin":
-                        String DelVid = (String) request.getAttribute("VID");
+                        String DelVid = (String) request.getParameter("VID");
                         certificaten.DeleteVacCertificate(DelVid);
                         response.sendRedirect("Beheer/beheer.jsp");
                         break;

@@ -161,7 +161,7 @@ public class certificaten implements certificatenLocal {
     }
     
     public void DeleteTestCertificate(String id){
-        
+
         NyTestcertificaat delTest = scanTestCertificaten(id);
         em.remove(delTest);
         
