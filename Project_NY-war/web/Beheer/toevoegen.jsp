@@ -10,6 +10,11 @@
 
 <html>
     <script>
+        <%-- 
+        ========================================================================================
+        // Functions to validate the input of the forms, before they get send to the server
+        ========================================================================================        
+        --%>
         function validateVacForm()
         {
             if(document.Vacadd.soort.value!="<c:out value="${sessionScope.VacSoort }" />")
@@ -48,6 +53,11 @@
     </head>
     <body>
         <h1>Certificaat toevoegen</h1>
+        <%-- 
+        ========================================================================================
+        // Input for the civilian ID
+        ========================================================================================        
+        --%>
         <form method="post" action="<c:url value='/BeheerServlet'/>">
         
             <label for="burgerid">BurgerID: </label>
@@ -55,6 +65,11 @@
             <input type="submit" name="submitknop" value="Toon Certificaten">
 
         </form>
+        <%-- 
+        ========================================================================================
+        // Showing previous vaccinations 
+        ========================================================================================        
+        --%>
         <h3>VaccinCertificaat</h3>
         <div class="line"></div>
         <h4>Vorige Vaccinaties</h4>
@@ -76,6 +91,11 @@
         </table>        
         
         <div class="line"></div>
+        <%-- 
+        ========================================================================================
+        // Adding a new vaccin certificate 
+        ========================================================================================        
+        --%>
         
         <form name="Vacadd"  method="post" action="<c:url value='/BeheerServlet'/> " onSubmit="return validateVacForm()">
             
@@ -105,7 +125,12 @@
             </table>
             <input type="submit" name="submitknop" value="Vaccin Toevoegen">
         </form>
-            
+        
+        <%-- 
+        ========================================================================================
+        // Adding a new test certificate 
+        ========================================================================================        
+        --%>        
         <h3>TestCertificaat</h3>
         <div class="line"></div>
         

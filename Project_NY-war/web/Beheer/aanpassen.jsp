@@ -16,6 +16,11 @@
         <title>Aanpassen</title>
     </head>
     <script>
+        <%-- 
+        ========================================================================================
+        // Functions to insure a certificate isn't deleted by accident 
+        ========================================================================================        
+        --%>
         function confrmDelete(){
             if(confirm("Bent u zeker dat u dit certificaat wilt verwijderen?")!=true){
                    return false ;
@@ -24,6 +29,11 @@
     </script>
     <body>
         <h1>Certificaat aanpassen</h1>
+        <%-- 
+        ========================================================================================
+        // Input for the civilian ID
+        ========================================================================================        
+        --%>
         <p>
             <form method="post" action="<c:url value='/BeheerServlet'/>">
 
@@ -34,6 +44,11 @@
             </form>
         
         </p>
+        <%-- 
+        ========================================================================================
+        // Showing all certificates 
+        ========================================================================================        
+        --%>
         <h2>Overzicht van certificaten</h2>
         <h4>Testcertificaten</h4>
         <div class="line"></div>
@@ -46,11 +61,17 @@
                 <th>Aanpassen?</th>
                 <th>Delete?</th>
             </tr>
+            <%-- 
+            ========================================================================================
+            // Showing Test certificates with 2 buttons: change and delete
+            ========================================================================================        
+            --%>
             <c:forEach var="tests" items="${sessionScope.tests}">
                 <tr>
                     <td><c:out value="${tests.getTcid()}"/></td>
                     <td><c:out value="${tests.getDtm()}"/></td>
                     <td><c:out value="${tests.getRes()}"/></td>
+                    
                     <td>
                         <form method="post" action="<c:url value='/BeheerServlet'/>">
                             <input type="hidden" name="CerType" value="test">
@@ -80,6 +101,11 @@
                 <th>Aanpassen?</th>
                 <th>Delete?</th>
             </tr>
+            <%-- 
+            ========================================================================================
+            // Showing Vaccin certificates with 2 buttons: change and delete
+            ========================================================================================        
+            --%>
             <c:forEach var="vaccins" items="${sessionScope.vaccins}">
                 <tr>
                     <td><c:out value="${vaccins.getVcid()}"/></td>

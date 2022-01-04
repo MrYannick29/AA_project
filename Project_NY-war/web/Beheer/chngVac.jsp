@@ -1,7 +1,7 @@
 <%-- 
     Document   : chngVac
     Created on : 31-Dec-2021, 02:32:32
-    Author     : Niels
+    Author     : Niels Serlet 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,6 +14,11 @@
         <title>Vaccinatie aanpassen</title>
     </head>
     <script>
+        <%-- 
+        ========================================================================================
+        // Function to validate the input of the form, before it gets send to the server
+        ========================================================================================        
+        --%>
         function validateVacForm()
         {
             if(document.VacChng.soort.value!="<c:out value="${sessionScope.VacSoort }" />")
@@ -40,6 +45,11 @@
         
     </script>
     <body>
+        <%-- 
+        ========================================================================================
+        // Changing a vaccin certificate 
+        ========================================================================================        
+        --%>
         <h1>Vaccin certificate</h1>
         <div class="line"></div>
         <p>

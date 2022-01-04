@@ -1,7 +1,7 @@
 <%-- 
     Document   : beheer
     Created on : 18-nov-2021, 11:14:47
-    Author     : Yannick Saelen
+    Author     : Yannick Saelen & Niels Serlet
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,6 +18,11 @@
         <h1>Dag Beheerder</h1>
         <h3>Wat wilt u doen?</h3>
         <div class="line"></div>
+        <%-- 
+        ========================================================================================
+        // Form to choose between adding a new certificate or change a certificate
+        ========================================================================================        
+        --%>
         
         <form method="post" action="<c:url value='/BeheerServlet'/>">
             
@@ -31,10 +36,4 @@
     </body>
     <%@ include file="../footer.jsp" %>
 </html>
-<!--
-Test
-Voeg nieuw certificaat toe: 2 keuzes: vaccin of test, voeg doe aan db
-Pas Certificaat aan:    Laat alle certificaten zien: vaccins en testen
-                        kan veranderd worden en terug naar de db gezet worden
 
--->

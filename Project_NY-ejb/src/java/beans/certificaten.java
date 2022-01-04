@@ -24,44 +24,55 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Yannick Saelen
- * Hier komt code om alle certificaten op te halen van een burger.
+ * @author Yannick Saelen & Niels Serlet
+ * Code to interact with the database: getting info, adding info, updating info and deleting info.
  */
 @Stateless
 public class certificaten implements certificatenLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+   
     
     @PersistenceContext private EntityManager em;
     
+    //==========================================================================================================================================
+    //Get all test certificates of 1 civilian
+    //==========================================================================================================================================
     public List getTestCertificaten(String BurgerID) {
         return em.createQuery("Select l from NyTestcertificaat l where l.bid=?1").setParameter(1, em.find(NyGebruikers.class, BurgerID)).getResultList();
     }
+    
+    //==========================================================================================================================================
+    //Get all vaccin certificates of 1 civilian
+    //==========================================================================================================================================
     public List getVaccinCertificaten(String BurgerID) {
         return em.createQuery("Select l from NyVaccincertificaat l where l.bid=?1").setParameter(1, em.find(NyGebruikers.class, BurgerID)).getResultList();
     }
     
-    
+    //==========================================================================================================================================
+    //Get 1 test certificate via its ID
+    //==========================================================================================================================================
     public NyTestcertificaat scanTestCertificaten(String CertID) throws NoResultException {
         return (NyTestcertificaat) em.createQuery("Select l from NyTestcertificaat l where l.tcid=?1").setParameter(1, parseInt(CertID)).getSingleResult();
     }
+    
+    //==========================================================================================================================================
+    //Get 1 vaccin certificate via its ID
+    //==========================================================================================================================================
     public NyVaccincertificaat scanVaccinCertificaten(String CertID) throws NoResultException {
         return (NyVaccincertificaat) em.createQuery("Select l from NyVaccincertificaat l where l.vcid=?1").setParameter(1, parseInt(CertID)).getSingleResult();
     }
     
+    //==========================================================================================================================================
+    //Get 1 civilian via its ID
+    //==========================================================================================================================================
     public NyGebruikers zoekBurger(String BurgerID)
     {
         return (NyGebruikers) em.createQuery("Select l from NyGebruikers l where l.bid=?1").setParameter(1, BurgerID).getSingleResult();
     }
-    
-    public List getTestCertificateById(String testID){
-        return em.createNamedQuery("NyTestcertificaat.findByTcid").setParameter("tcid", testID).getResultList();
-    }
-    public List getVaccinCertificateById(String vacID){
-        return em.createNamedQuery("NyVaccincertificaat.findByVcid").setParameter("vcid", vacID).getResultList();
-    }
-    
+        
+    //==========================================================================================================================================
+    //Add a test certificate 
+    //==========================================================================================================================================
     public void setVaccinCertificaat(String datum, String soort, String dosis, String bid)
     {
         NyVaccincertificaat newVaccin = new NyVaccincertificaat();
@@ -91,6 +102,10 @@ public class certificaten implements certificatenLocal {
         em.persist(newVaccin);
         
     }
+    
+    //==========================================================================================================================================
+    //Add a test certificate 
+    //==========================================================================================================================================
     public void setTestCertificaat(String datum, String res, String bid)
     {
         NyTestcertificaat newTest = new NyTestcertificaat();
@@ -118,6 +133,11 @@ public class certificaten implements certificatenLocal {
         
         em.persist(newTest);
     }
+    
+    
+    //==========================================================================================================================================
+    // Update a vaccin certificate 
+    //==========================================================================================================================================
     public void UpdateVaccinCertificaat(String datum, String soort, String dosis, String bid, String Vid)
     {
         NyVaccincertificaat upVaccin = scanVaccinCertificaten(Vid);
@@ -140,6 +160,11 @@ public class certificaten implements certificatenLocal {
         em.persist(upVaccin);
         
     }
+    
+    
+    //==========================================================================================================================================
+    // Update a test certificate 
+    //==========================================================================================================================================
     public void UpdateTestCertificaat(String datum, String res, String bid, String tid)
     {
         NyTestcertificaat newTest = scanTestCertificaten(tid);
@@ -160,12 +185,20 @@ public class certificaten implements certificatenLocal {
         em.persist(newTest);
     }
     
+    
+    //==========================================================================================================================================
+    // Delete a test certificate 
+    //==========================================================================================================================================
     public void DeleteTestCertificate(String id){
 
         NyTestcertificaat delTest = scanTestCertificaten(id);
         em.remove(delTest);
         
     }
+    
+    //==========================================================================================================================================
+    // Delete a vaccin certificate 
+    //==========================================================================================================================================
     public void DeleteVacCertificate(String id){
         
         NyVaccincertificaat delVac = scanVaccinCertificaten(id);

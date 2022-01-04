@@ -1,7 +1,7 @@
 <%-- 
     Document   : chngTst
     Created on : 31-Dec-2021, 02:33:16
-    Author     : Niels
+    Author     : Niels Serlet
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,6 +14,11 @@
         <title>Test aanpassen</title>
     </head>
     <script>
+        <%-- 
+        ========================================================================================
+        // Function to validate the input of the form, before it gets send to the server
+        ========================================================================================        
+        --%>
         function validateTestFrom(){
             if(document.Testchng.datum.value=="")
             {
@@ -24,6 +29,11 @@
         }
     </script>
     <body>
+        <%-- 
+        ========================================================================================
+        // Changing a test certificate 
+        ========================================================================================        
+        --%>
     <h1>Test certificate</h1>
     <div class="line"></div>
         <p>
