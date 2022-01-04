@@ -13,11 +13,21 @@
         <link rel="stylesheet" type="text/css" href="../opmaak.css">
         <title>Test aanpassen</title>
     </head>
+    <script>
+        function validateTestFrom(){
+            if(document.Testchng.datum.value=="")
+            {
+                alert("Gelieve een datum in te vullen!");
+                document.Testchng.datum.focus();
+                return false;
+            }
+        }
+    </script>
     <body>
     <h1>Test certificate</h1>
     <div class="line"></div>
         <p>
-        <form method="post" action="<c:url value='/BeheerServlet'/>">
+        <form name="Testchng" method="post" action="<c:url value='/BeheerServlet'/>" onSubmit="return validateTestFrom()">
             <table>
                     <tr>
                         <th>Burger ID:</th>

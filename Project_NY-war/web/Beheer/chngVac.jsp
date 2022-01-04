@@ -13,11 +13,37 @@
         <link rel="stylesheet" type="text/css" href="../opmaak.css">
         <title>Vaccinatie aanpassen</title>
     </head>
+    <script>
+        function validateVacForm()
+        {
+            if(document.VacChng.soort.value!="<c:out value="${sessionScope.VacSoort }" />")
+            {
+                if(confirm("Verschil in vaccin ")!=true){
+                   return false ;
+               }
+            }
+            if(document.VacChng.soort.value=="Janssens" && document.Vacadd.dosis.value!="1" )
+            {
+                if(confirm("2de Janssens vaccinatie?")!=true){
+                   return false ;
+               }
+            }
+            if(document.VacChng.datum.value=="")
+            {
+                alert("Gelieve een datum in te vullen!");
+                document.VacChng.datum.focus();
+                return false;
+            }
+    
+        }
+        
+        
+    </script>
     <body>
         <h1>Vaccin certificate</h1>
         <div class="line"></div>
         <p>
-        <form method="post" action="<c:url value='/BeheerServlet'/>">
+        <form name="VacChng" method="post" action="<c:url value='/BeheerServlet'/>" onSubmit="return validateVacForm()">
             <table>
                     <tr>
                         <th>Burger ID:</th>

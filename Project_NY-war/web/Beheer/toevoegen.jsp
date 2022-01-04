@@ -36,7 +36,7 @@
             if(document.Testadd.datum.value=="")
             {
                 alert("Gelieve een datum in te vullen!");
-                document.Vacadd.datum.focus();
+                document.Testadd.datum.focus();
                 return false;
             }
         }
