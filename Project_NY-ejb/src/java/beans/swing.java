@@ -17,6 +17,7 @@ import javax.persistence.PersistenceContext;
 /**
  *
  * @author Yannick Saelen
+ * The code to let the swing application interact with the databese
  */
 
 @Stateless
@@ -25,6 +26,9 @@ public class swing implements swingRemote {
     @PersistenceContext private EntityManager em;
     @EJB private certificatenLocal certificaten;
     
+    //==========================================================================================================================================
+    //Get 1 vaccin certificate via its ID
+    //==========================================================================================================================================
     public String scanVaccinCertificaten(String certID) {
         System.out.println(certID);
         String status = "?";
@@ -48,6 +52,9 @@ public class swing implements swingRemote {
             }
         return burgerID + "/" + status;
     }
+    //==========================================================================================================================================
+    //Get 1 test certificate via its ID
+    //==========================================================================================================================================
     public String scanTestCertificaten(String certID) {
         System.out.println(certID);
         String status = "?";

@@ -76,9 +76,16 @@ public class ScanServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    //==========================================================================================================================================
+    //check which submitbutton has been pressed, act accordingly
+    //==========================================================================================================================================
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //======================================================================================================================================
+        //Scan the given certificateID and return the userID and the result
+        //======================================================================================================================================
         if(request.getParameter("submitknop").equals("scanid"))
         {
             String certid = request.getParameter("certificaatid");
@@ -123,6 +130,9 @@ public class ScanServlet extends HttpServlet {
             response.sendRedirect("Open/scanres.jsp");
 
         }
+        //======================================================================================================================================
+        //return to scan page to scan again
+        //======================================================================================================================================
         if(request.getParameter("submitknop").equals("scanopnieuw"))
         {
             response.sendRedirect("Open/scannen.jsp");

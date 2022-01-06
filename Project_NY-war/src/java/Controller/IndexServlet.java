@@ -75,27 +75,46 @@ public class IndexServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    //==========================================================================================================================================
+    //check which submitbutton has been pressed, act accordingly
+    //==========================================================================================================================================
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        //======================================================================================================================================
+        //Go to beheer
+        //======================================================================================================================================
         if(request.getParameter("submitknop").equals("Aanpassen"))
         {
             response.sendRedirect("Beheer/beheer.jsp");
         }
+        //======================================================================================================================================
+        //Go to burger
+        //======================================================================================================================================
         else if(request.getParameter("submitknop").equals("Opvragen"))
         {                   
             response.sendRedirect("Burger/burger.jsp");
         }
+        //======================================================================================================================================
+        //Go to scannen
+        //======================================================================================================================================
         else if(request.getParameter("submitknop").equals("Scannen"))
         {
             response.sendRedirect("Open/scannen.jsp");
         }
+        //======================================================================================================================================
+        //End session and teturn to the index page
+        //======================================================================================================================================
         else if(request.getParameter("submitknop").equals("logout"))
         {
             request.getSession().invalidate();
             response.sendRedirect("index.jsp");
         }
+        //======================================================================================================================================
+        //return to the index page
+        //======================================================================================================================================
         else if(request.getParameter("submitknop").equals("Home"))
         {
             response.sendRedirect("index.jsp");

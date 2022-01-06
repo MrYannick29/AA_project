@@ -75,13 +75,18 @@ public class BurgerServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    //==========================================================================================================================================
+    //check which submitbutton has been pressed, act accordingly
+    //==========================================================================================================================================
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //======================================================================================================================================
+        //Loading the certificates from the user
+        //======================================================================================================================================
         if(request.getParameter("submitknop").equals("Toon mijn certificaten"))
         {
             HttpSession sessie = request.getSession();
             String BurgerID = request.getUserPrincipal().getName();
-            System.out.println(BurgerID);
             List tests = certificaten.getTestCertificaten(BurgerID);
             List vaccins = certificaten.getVaccinCertificaten(BurgerID);
             

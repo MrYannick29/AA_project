@@ -1,7 +1,12 @@
 <%-- 
-    Document   : loginError
+    Document   : login
     Created on : 4-nov-2021, 11:10:48
     Author     : Yannick Saelen
+
+//======================================================================================================================================
+//This is the page the server will show you when you try to acces files for which you need authorization
+//When login is correct, you can acces the authorized files
+//======================================================================================================================================
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

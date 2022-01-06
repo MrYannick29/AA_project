@@ -2,6 +2,10 @@
     Document   : loginError
     Created on : 4-nov-2021, 11:10:48
     Author     : Yannick Saelen
+
+//======================================================================================================================================
+//The server will show you this file when your login is incorrect
+//======================================================================================================================================
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,5 +23,3 @@
     </body>
     <%@ include file="footer.jsp" %>
 </html>
-
-<!-- oplossing aan het zoeken voor een foute inlog, momenteel kan ik indexServlet niet aanpassen ( voor god weet welke reden, thanks GitHub) -->

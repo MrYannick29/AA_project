@@ -14,7 +14,8 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Yannick Saelen
+ * @author Yannick Saelen & Niels Serlet
+ * The interface necessary for the sessionbean "certificaten"
  */
 @Local
 public interface certificatenLocal {
@@ -26,13 +27,12 @@ public interface certificatenLocal {
     
     NyGebruikers zoekBurger(String BurgerID);
     
-    List getTestCertificateById(String testID);
-    List getVaccinCertificateById(String vacID);
-    
     void setVaccinCertificaat(String datum, String soort, String dosis, String bid);
     void setTestCertificaat(String datum, String res, String bid);
+    
     void UpdateVaccinCertificaat(String datum, String soort, String dosis, String bid, String Vid);
-    void UpdateTestCertificaat(String datum, String res, String bid, String tid);
+    void UpdateTestCertificaat(String datum, String result, String bid, String tid);
+    
     void DeleteVacCertificate(String id);
     void DeleteTestCertificate(String id);
 }

@@ -2,6 +2,11 @@
     Document   : index
     Created on : 18-nov-2021, 10:51:15
     Author     : Yannick Saelen
+
+//======================================================================================================================================
+//This is the page where you start when you start the project
+//contains the button to choose your action
+//======================================================================================================================================
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

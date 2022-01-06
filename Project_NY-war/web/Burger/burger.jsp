@@ -2,6 +2,11 @@
     Document   : burger
     Created on : 18-nov-2021, 11:38:18
     Author     : Yannick Saelen
+
+//======================================================================================================================================
+//This page will give you an overview of all your certificates
+//You have to click on the button to load the information
+//======================================================================================================================================
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

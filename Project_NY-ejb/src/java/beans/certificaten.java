@@ -165,7 +165,7 @@ public class certificaten implements certificatenLocal {
     //==========================================================================================================================================
     // Update a test certificate 
     //==========================================================================================================================================
-    public void UpdateTestCertificaat(String datum, String res, String bid, String tid)
+    public void UpdateTestCertificaat(String datum, String result, String bid, String tid)
     {
         NyTestcertificaat newTest = scanTestCertificaten(tid);
         newTest.setTcid(Integer.parseInt(tid));
@@ -180,7 +180,7 @@ public class certificaten implements certificatenLocal {
             Logger.getLogger(certificaten.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        newTest.setRes(Integer.parseInt(res));
+        newTest.setRes(Integer.parseInt(result));
         
         em.persist(newTest);
     }

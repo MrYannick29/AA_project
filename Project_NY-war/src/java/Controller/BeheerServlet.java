@@ -250,7 +250,7 @@ public class BeheerServlet extends HttpServlet {
                 
                 String Tid = request.getParameter("id");
                 String datumNT = request.getParameter("datum");
-                String resN = request.getParameter("res");
+                String resN = request.getParameter("result");
                 String bidNT = (String) request.getParameter("bid");
                 certificaten.UpdateTestCertificaat(datumNT, resN, bidNT, Tid);
                 response.sendRedirect("Beheer/beheer.jsp");
